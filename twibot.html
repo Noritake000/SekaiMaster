@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>ついぼジェネレーター</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+<body>
+  <div class="container">
+    <h1>ついぼジェネレーター</h1>
+    <div class="content">
+      <form id="recruitmentForm">
+        <div class="input-group">
+          <label for="tlFlow">TL放流有無</label>
+          <div class="button-group" id="tlFlowButtons">
+            <button type="button" data-value="">あり</button>
+            <button type="button" data-value="@No_TL">なし</button>
+          </div>
+          <input type="hidden" id="tlFlow" value="">
+        </div>
+
+        <div class="input-group">
+          <label for="room">ルーム</label>
+          <div class="button-group" id="roomButtons">
+            <button type="button" data-value="ベテラン">ベテラン</button>
+            <button type="button" data-value="フリー">フリー</button>
+          </div>
+          <input type="hidden" id="room" value="">
+        </div>
+
+        <div class="input-group">
+          <label for="song">楽曲</label>
+          <div class="button-group" id="songButtons">
+            <button type="button" data-value="🦐">🦐</button>
+            <button type="button" data-value="ビバハピ">ビバハピ</button>
+            <button type="button" data-value="ロスエン">ロスエン</button>
+            <button type="button" data-value="Sage">Sage</button>
+            <button type="button" data-value="おまかせ">おまかせ</button>
+          </div>
+          <input type="hidden" id="song" value="">
+        </div>
+
+        <div class="input-group">
+          <label for="rounds">回数</label>
+          <div class="button-group" id="roundsButtons">
+            <button type="button" data-value="高速周回">高速周回</button>
+            <button type="button" data-value="周回">周回</button>
+            <button type="button" data-value="2回">2回</button>
+            <button type="button" data-value="3回">3回</button>
+            <button type="button" data-value="4回">4回</button>
+            <button type="button" data-value="5回">5回</button>
+          </div>
+          <input type="hidden" id="rounds" value="">
+        </div>
+
+        <div class="input-group">
+          <label for="remainingSlots">残り枠</label>
+          <div class="button-group" id="remainingSlotsButtons">
+            <button type="button" data-value="1">@1</button>
+            <button type="button" data-value="2">@2</button>
+            <button type="button" data-value="3">@3</button>
+            <button type="button" data-value="4">@4</button>
+          </div>
+          <input type="hidden" id="remainingSlots" value="">
+        </div>
+
+        <div class="input-group">
+          <label for="roomIdSymbol">ルームID記号</label>
+          <div class="button-group" id="roomIdSymbolButtons">
+            <button type="button" data-value="🔑">🔑</button>
+            <button type="button" data-value="ルームID">ルームID</button>
+          </div>
+          <input type="hidden" id="roomIdSymbol" value="">
+        </div>
+
+        <div class="input-group">
+          <label for="roomId">ルームID</label>
+          <input type="text" id="roomId" maxlength="5" placeholder="ルームIDを入力してください">
+        </div>
+
+        <div class="input-group">
+          <label for="hostSkill">主スキル値</label>
+          <input type="text" id="hostSkill" maxlength="3" placeholder="募集主のスキル値を入力してください">
+        </div>
+
+        <div class="input-group">
+          <label for="requiredSkill">募集スキル値</label>
+          <input type="text" id="requiredSkill" maxlength="3" placeholder="募集するスキル値を入力してください">
+        </div>
+
+        <!-- 条件外人数を表示する -->
+        <div class="input-group">
+            <label for="showConditionOutside">条件外人数を表示する</label>
+            <label class="switch" for="showConditionOutside">
+                <input type="checkbox" id="showConditionOutside">
+                <span class="slider round"></span>
+            </label>
+            <input type="text" id="conditionOutside" class="hidden" maxlength="2" placeholder="人数を入力">
+        </div>
+
+        <!-- 支援者人数を表示する -->
+        <div class="input-group">
+            <label for="showSupporter">支援者人数を表示する</label>
+            <label class="switch" for="showSupporter">
+                <input type="checkbox" id="showSupporter">
+                <span class="slider round"></span>
+            </label>
+            <input type="text" id="supporterCount" class="hidden" maxlength="2" placeholder="人数を入力">
+        </div>
+
+        <div class="input-group">
+          <label for="otherComments">その他コメント</label>
+          <textarea id="otherComments" rows="1"></textarea>
+        </div>
+      </form>
+      <div class="preview">
+        <h2>プレビュー</h2>
+        <div id="tweetPreview"></div>
+      </div>
+    </div>
+    
+    <div class="button-group">
+        <button type="button" onclick="generateTweetLink()">リンク生成</button>
+        <button type="button" id="saveHistoryButton">入力を保存する</button>
+    </div>
+    
+    <div id="tweetLinkContainer" class="tweet-link"></div>
+    <h2>履歴
+        <label class="switch">
+          <input type="checkbox" id="historyToggle">
+          <span class="slider round"></span>
+        </label>
+    </h2>
+    <div id="historyContainer">
+        <ul id="historyList"></ul> 
+        <button id="clearAllHistoryButton">全履歴削除</button> 
+    </div>
+
+  </div>
+  <script src="script.js"></script>
+  <footer class="footer">
+    <p>つくったひと：@Noritake https://x.com/YesNoritake ・All Rights Reserved.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,375 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 700px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.input-group select, 
+.input-group input, 
+.input-group textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+.hidden {
+    display: none;
+}
+
+.tweet-link {
+    text-align: center;
+}
+
+.tweet-link a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #1da1f2;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    flex: 1; /* ボタンの幅を均等にする */
+    margin-top: 5px;
+}
+
+.tweet-link a:hover {
+    background-color: #0d8bd9;
+}
+/*ボタン */
+
+.button-group {
+    display: flex; 
+    gap: 10px; 
+  }
+  
+  /* ツイートボタンのスタイル */
+  .tweet-button {
+    display: block; /* ブロックレベル要素に変更 */
+    width: 100%; /* 幅を100%に設定 */
+    padding: 10px 20px;
+    background-color: #1da1f2;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .tweet-button:hover {
+    background-color: #0d8bd9;
+  }
+  
+  .button-group button {
+    padding: 8px 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    cursor: pointer;
+    flex: 1; /* ボタンの幅を均等にする */
+    margin-top: 5px;
+  }
+  
+  .button-group button.active {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+  }
+  /* チェックボックス調整 */
+
+  .input-group label input[type="checkbox"] {
+    margin-right: 8px; /* チェックボックスの右側の余白 */
+    transform: scale(1.5); /* サイズを1.5倍に変更 */
+  }
+  
+/* input-group 内の要素の配置 */
+　.input-group label {
+    display: flex;
+    align-items: center; /* 垂直方向の中央揃え */
+    justify-content: space-between; /* 要素間の間隔を最大化 */
+    margin-bottom: 10px; /* 必要に応じて調整 */
+    flex-direction: row-reverse; /* 要素の順序を逆にする */
+  }
+
+#showConditionOutside {
+    width: auto; /* 自動調整 */
+    height: auto; /* 自動調整 */
+    margin-right: 20px; 
+    padding: 0; /* 余白リセット */
+  }
+
+#showSupporter {
+    width: auto; /* 自動調整 */
+    height: auto; /* 自動調整 */
+    margin-right: 20px; 
+    padding: 0; /* 余白リセット */
+}
+
+/* プレビュー実装*/
+
+.content {
+    display: flex;
+    gap: 20px; /* フォームとプレビューの間隔 */
+  }
+  
+  /* プレビューエリアのスタイル */
+  .preview {
+    flex: 1; /* プレビューエリアに十分な幅を確保 */
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 4px;
+    width: 60%; /* プレビューエリアの幅を調整 */
+  }
+  
+  #tweetPreview {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 4px;
+    font-family: monospace; /* 等幅フォント */
+    white-space: pre-wrap; /* 改行を反映 */
+  }
+
+  /* ... その他のスタイル ... */
+
+#tweetLinkContainer {
+    display: inline-flex;
+    width: 100%;
+  } 
+
+  .footer {
+    background-color: #f1f1f1;
+    text-align: center;
+    padding: 10px 0;
+    bottom: 0;
+    width: 100%;
+}
+
+/* 履歴コンテナ */
+#historyContainer {
+    margin-bottom: 20px;
+    max-height: 0; /* 初期状態では高さを0にする */
+    overflow: hidden; /* コンテンツがはみ出ないようにする */
+    transition: max-height 0.3s ease-in-out; /* スムーズな開閉アニメーション */
+    border: 1px solid #ccc; /*枠線を追加*/
+    border-radius: 6px; /*角を丸くする */
+  }
+  
+  /* 開いた状態の高さ */
+  #historyContainer.open {
+    max-height: 500px; /* 必要に応じて調整 */
+    background-color: #f9f9f9; /* 開いたときに背景色を変更 */
+  }
+
+  /*履歴の項目*/
+  #historyList li {
+    padding: 5px 0; /* 上下左右にpaddingを設定 */
+    border-bottom: 1px solid #eee; /* 項目ごとに下線を表示 */
+  }
+
+  
+  /* 矢印のスタイル */
+  .arrow-down {
+    display: inline-block; /* インラインブロック要素にする */
+    transform: rotate(0deg); /* 初期状態は下向き */
+    transition: transform 0.3s ease-in-out; /* スムーズな回転アニメーション */
+    margin-left: 10px;
+  }
+  
+  .arrow-up {
+    transform: rotate(180deg); /* 上向き */
+  }
+
+  /* 履歴のヘッダー */
+#historyHeader {
+    cursor: pointer; /* カーソルをポインターに変更 */
+    user-select: none; /* テキストの選択を無効化 */
+  }
+  
+/* 履歴リストのスタイル */
+  #historyList {
+    list-style: none;
+    padding: 10px; /* paddingを追加 */
+    margin-bottom: 20px;
+  }
+
+  #historyList li {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    display: flex; 
+    align-items: center; 
+  }
+
+  
+  #historyList .roomId {
+    margin-right: 10px;
+  }
+  
+  #historyList .dateTime {
+    font-size: 0.8em;
+    color: #666;
+    margin-right: auto; 
+  }
+  
+  /* ボタンのスタイル */
+  .favorite-button, 
+  .reuse-button,
+  .delete-button { /* 削除ボタンも追加 */
+    background-color: #f0f0f0;
+    border: none;
+    padding: 8px 16px; /* ボタンのサイズを調整 */
+    margin-left: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .favorite-button.active {
+    background-color: #ffd700; 
+  }
+  
+  /* 全履歴削除ボタン */
+  #clearAllHistoryButton {
+      display: block; /* ブロックレベル要素にする */
+      width: 100%; /* 幅を100%にする */
+      margin-top: 10px; /* 上にマージンを追加 */
+      background-color: #f0f0f0; /* ボタンの背景色 */
+      border: none; /* ボーダーをなしにする */
+      padding: 8px 16px; /* パディングを設定 */
+      border-radius: 4px; /* 角を丸くする */
+      cursor: pointer; /* カーソルをポインターにする */
+    }
+  
+    /* ... (他のCSS) ... */
+
+/* スライドスイッチのスタイル */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    margin-left: 10px;
+    vertical-align: middle; /* <h2> との垂直方向の配置を調整 */
+  }
+  
+/* チェックボックスを非表示にする */
+input[type="checkbox"] { /* 属性セレクタで全てのチェックボックスに適用 */
+    display: none; 
+  }
+
+  .switch input { 
+    opacity: 0; /* チェックボックスを非表示にする */
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 34px;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(20px);
+    -ms-transform: translateX(20px);
+    transform: translateX(20px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+  /* switch-label のスタイル */
+　.switch-label {
+    display: flex; /* label 内をフレックスボックスにする */
+    align-items: center; /* 垂直方向に中央揃え */
+  }
+  
+  .switch-label .slider {
+    margin-right: 10px; /* スイッチとラベルの間に余白を追加 */
+  }
+
+
+
+  @media screen and (max-width: 768px) {
+    .container {
+      max-width: 95%; /* 画面幅いっぱいに表示 */
+      margin: 10px auto; /* 余白を調整 */
+    }
+  
+    .content {
+      flex-direction: column; /* フォームとプレビューを縦に並べる */
+    }
+  
+    .preview {
+      width: 95%; /* プレビューエリアの幅を100%にする */
+    }
+  
+    .button-group {
+      flex-direction: column; /* ボタンを縦に並べる */
+    }
+  
+
+  }
